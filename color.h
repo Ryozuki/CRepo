@@ -1,3 +1,6 @@
+#ifndef COLOR_H
+#define COLOR_H
+
 #define COLOR_MODE(x) "\x1b[" #x "m"
 #define COLOR_RESET() COLOR_MODE(0)
 #define COLOR_BOLD() COLOR_MODE(1)
@@ -34,3 +37,5 @@
 #define COLOR_MAGENTA_BG COLOR_BASE_BG(5)
 #define COLOR_CYAN_BG COLOR_BASE_BG(6)
 #define COLOR_WHITE_BG COLOR_BASE_BG(7)
+
+#endif // COLOR_H
