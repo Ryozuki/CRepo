@@ -23,6 +23,9 @@ void strlist_push_front(StrList *list, char *value, size_t size) {
 
     list->first = (StrListValue*)malloc(sizeof(StrListValue));
 
+    if(oldFirst != NULL) 
+        oldFirst->prev = list->first;
+        
     list->first->next = oldFirst;
     list->first->prev = NULL;
 
