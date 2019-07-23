@@ -1,6 +1,8 @@
 #ifndef LIST_H
 #define LIST_H
 
+#include <stddef.h>
+
 typedef struct StrListValue {
     char *value;
     struct StrListValue *prev;
@@ -14,8 +16,8 @@ typedef struct StrList {
 
 StrList *strlist_create();
 
-void strlist_push_front(StrList *list, char *value);
-void strlist_push_back(StrList *list, char *value);
+void strlist_push_front(StrList *list, char *value, size_t size);
+void strlist_push_back(StrList *list, char *value, size_t size);
 
 int strlist_pop_front(StrList *list);
 int strlist_pop_back(StrList *list);
