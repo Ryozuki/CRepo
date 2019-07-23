@@ -25,7 +25,7 @@ void strlist_push_front(StrList *list, char *value, size_t size) {
 
     if(oldFirst != NULL) 
         oldFirst->prev = list->first;
-        
+
     list->first->next = oldFirst;
     list->first->prev = NULL;
 
@@ -64,7 +64,9 @@ int strlist_pop_front(StrList *list) {
         return 0;
     
     list->first = front->next;
-    list->first->prev = NULL;
+
+    if(list->first != NULL)
+        list->first->prev = NULL;
 
     if(list->last == front)
         list->last = list->first;
@@ -79,7 +81,9 @@ int strlist_pop_back(StrList *list) {
         return 0;
 
     list->last = back->prev;
-    back->prev->next = NULL;
+
+    if(back->prev != NULL)
+        back->prev->next = NULL;
 
     if(list->first == back)
         list->first = list->last;
