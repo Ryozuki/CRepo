@@ -8,4 +8,4 @@ Contains color stuff for printing.
 
 ## list.c list.h
 
-Double linked list with head and tail optimization.
+Double linked list (with head and tail).
