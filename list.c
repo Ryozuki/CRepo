@@ -1,9 +1,12 @@
 #include "list.h"
 #include <stdlib.h>
+#include <string.h>
 
 static void strlist_freeelem(StrListValue *elem) {
-    free(elem->value);
-    free(elem);
+    if(elem != NULL) {
+        free(elem->value);
+        free(elem);
+    }
 }
 
 StrList *strlist_create() {
@@ -12,7 +15,9 @@ StrList *strlist_create() {
     return list;
 }
 
-void strlist_push_front(StrList *list, char *value) {
+void strlist_push_front(StrList *list, char *value, size_t size) {
+    char* buf = (char*)malloc(size);
+    memcpy(buf, value, size);
 
     StrListValue *oldFirst = list->first;
 
@@ -21,18 +26,22 @@ void strlist_push_front(StrList *list, char *value) {
     list->first->next = oldFirst;
     list->first->prev = NULL;
 
-    list->first->value = value;
+    list->first->value = buf;
 
     if(list->last == NULL)
         list->last = list->first;
 }
 
 
-void strlist_push_back(StrList *list, char *value) {
+void strlist_push_back(StrList *list, char *value, size_t size) {
+    char* buf = (char*)malloc(size);
+    memcpy(buf, value, size);
+
     StrListValue *newVal = (StrListValue*)malloc(sizeof(StrListValue));
 
     newVal->next = NULL;
     newVal->prev = list->last;
+    newVal->value = buf;
 
     if(list->last != NULL) {
         list->last->next = newVal;
