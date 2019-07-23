@@ -25,6 +25,8 @@ int strlist_pop_back(StrList *list);
 // Returns 1 if a element was deleted
 int strlist_delete(StrList *list, int index);
 
+char* strlist_get(StrList *list, int index);
+
 // Returns 1 if the list is empty
 int strlist_empty(StrList *list);
 
