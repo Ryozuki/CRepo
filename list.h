@@ -10,8 +10,8 @@ typedef struct StrListValue {
 } StrListValue;
 
 typedef struct StrList {
-    StrListValue *first;
-    StrListValue *last;
+    StrListValue *head;
+    StrListValue *tail;
 } StrList;
 
 StrList *strlist_create();
