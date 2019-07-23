@@ -104,7 +104,7 @@ int strlist_delete(StrList *list, int index) {
         i++;
     }
 
-    if(i == index) {
+    if(i == index && current) {
         if(current->prev) {
             current->prev->next = current->next;
             current->next->prev = current->prev;
@@ -124,6 +124,26 @@ int strlist_delete(StrList *list, int index) {
     }
 
     return 0;
+}
+
+char* strlist_get(StrList *list, int index) {
+    int i = 0;
+
+    StrListValue *current = list->head;
+
+    if(!current)
+        return NULL;
+    
+    while(current && i != index) {
+        current = current->next;
+        i++;
+    }
+
+    if(i == index && current) {
+        return current->value;
+    }
+
+    return NULL;
 }
 
 int strlist_empty(StrList *list) {
